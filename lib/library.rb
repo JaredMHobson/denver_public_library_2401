@@ -17,4 +17,8 @@ class Library
       @books << book
     end
   end
+
+  def publication_time_frame(author)
+    author.publication_time_frame
+  end
 end
