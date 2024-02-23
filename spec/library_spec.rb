@@ -20,6 +20,10 @@ RSpec.describe 'Library' do
     it 'has no authors by default' do
       expect(dpl.authors).to be_empty
     end
+
+    it 'has no books by default' do
+      expect(dpl.books).to be_empty
+    end
   end
 
   describe '#add_author' do
