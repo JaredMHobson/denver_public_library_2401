@@ -18,4 +18,16 @@ RSpec.describe 'Author' do
       expect(charlotte_bronte.books).to be_empty
     end
   end
+
+  describe '#write' do
+    it 'can add new books to its array of books' do
+      jane_eyre = charlotte_bronte.write("Jane Eyre", "October 16, 1847")
+
+      expect(charlotte_bronte.books).to eq([jane_eyre])
+
+      villette = charlotte_bronte.write("Villette", "1853")
+
+      expect(charlotte_bronte.books).to eq([jane_eyre, villette])
+    end
+  end
 end
