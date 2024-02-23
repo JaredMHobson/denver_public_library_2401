@@ -37,4 +37,8 @@ class Library
       book.checked_out?
     end
   end
+
+  def return(book)
+    book.return
+  end
 end
