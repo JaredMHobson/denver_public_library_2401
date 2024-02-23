@@ -75,4 +75,23 @@ RSpec.describe 'Library' do
       expect(dpl.books).to eq([jane_eyre, professor, mockingbird])
     end
   end
+
+  describe '#publication_time_frame' do
+    it 'can return the year of the book with the earliest publication year and the latest' do
+      jane_eyre = charlotte_bronte.write("Jane Eyre", "October 16, 1847")
+      villette = charlotte_bronte.write("Villette", "1853")
+
+      dpl.add_author(charlotte_bronte)
+
+      time_frame = dpl.publication_time_frame(charlotte_bronte)
+
+      expect(time_frame).to eq({start: "1847", end: "1853"})
+
+      professor = charlotte_bronte.write("The Professor", "1857")
+
+      new_time_frame = dpl.publication_time_frame(charlotte_bronte)
+
+      expect(new_time_frame).to eq({start: "1847", end: "1857"})
+    end
+  end
 end
