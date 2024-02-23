@@ -16,8 +16,36 @@ RSpec.describe 'Book' do
       expect(book.author).to eq("Harper Lee")
     end
 
-    it 'has a publication date and can show the year' do
+    it 'has a publication date and can show its year' do
       expect(book.publication_year).to eq("1960")
+    end
+
+    it 'is not checked out by default' do
+      expect(book.checked_out?).to be false
+    end
+  end
+
+  describe '#checked_out?' do
+    describe '#checkout' do
+      it 'can be checked out' do 
+        expect(book.checked_out?).to be false
+
+        book.checkout
+
+        expect(book.checked_out?).to be true
+      end
+    end
+
+    describe '#return' do
+      it 'can be returned' do
+        book.checkout
+
+        expect(book.checked_out?).to be true
+
+        book.return
+
+        expect(book.checked_out?).to be false
+      end
     end
   end
 end
