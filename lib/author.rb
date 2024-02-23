@@ -23,4 +23,23 @@ class Author
     @books << book
     book
   end
+
+  def earliest_book
+    @books.min_by do |book|
+      book.publication_year
+    end
+  end
+
+  def latest_book
+    @books.max_by do |book|
+      book.publication_year
+    end
+  end
+
+  def publication_time_frame
+    pub_time_frame = {}
+    pub_time_frame[:start] = earliest_book.publication_year
+    pub_time_frame[:end] = latest_book.publication_year
+    pub_time_frame
+  end
 end
