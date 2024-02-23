@@ -94,4 +94,29 @@ RSpec.describe 'Library' do
       expect(new_time_frame).to eq({start: "1847", end: "1857"})
     end
   end
+
+  describe '#checkout' do
+    it 'can checkout a book' do
+      jane_eyre = charlotte_bronte.write("Jane Eyre", "October 16, 1847")
+      dpl.add_author(charlotte_bronte)
+
+      expect(jane_eyre.checked_out?).to be false
+
+      dpl.checkout(jane_eyre)
+
+      expect(jane_eyre.checked_out?).to be true
+    end
+
+    it 'can return false if a book is checked out or does not exist in the library' do
+      jane_eyre = charlotte_bronte.write("Jane Eyre", "October 16, 1847")
+      
+      expect(dpl.checkout(jane_eyre)).to be false
+      
+      dpl.add_author(charlotte_bronte)
+      
+      expect(dpl.checkout(jane_eyre)).to be true
+
+      expect(dpl.checkout(jane_eyre)).to be false
+    end
+  end
 end
