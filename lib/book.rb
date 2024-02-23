@@ -1,5 +1,5 @@
 class Book
-  attr_reader :title
+  attr_reader :title, :times_checked_out
 
   def initialize(details)
     @title = details[:title]
@@ -7,6 +7,7 @@ class Book
     @last_name = details[:author_last_name]
     @publication_date = details[:publication_date]
     @checked_out = false
+    @times_checked_out = 0
   end
 
   def publication_year
