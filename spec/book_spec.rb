@@ -38,6 +38,19 @@ RSpec.describe 'Book' do
 
         expect(book.checked_out?).to be true
       end
+
+      it 'adds 1 to times_checked_out' do
+        expect(book.times_checked_out).to eq(0)
+
+        book.checkout
+
+        expect(book.times_checked_out).to eq(1)
+
+        book.checkout
+        book.checkout
+
+        expect(book.times_checked_out).to eq(3)
+      end
     end
 
     describe '#return' do

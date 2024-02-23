@@ -19,6 +19,7 @@ class Book
   end
 
   def checkout
+    @times_checked_out += 1
     @checked_out = true
   end
 
