@@ -13,5 +13,9 @@ RSpec.describe 'Author' do
     it 'has a full name' do
       expect(charlotte_bronte.name).to eq("Charlotte Bronte")
     end
+
+    it 'has no books by default' do
+      expect(charlotte_bronte.books).to be_empty
+    end
   end
 end
