@@ -157,4 +157,32 @@ RSpec.describe 'Library' do
       expect(jane_eyre.checked_out?).to be false
     end
   end
+
+  describe '#most_popular_book' do
+    it 'returns the most popular book based on how many times it was checked out' do
+      jane_eyre = charlotte_bronte.write("Jane Eyre", "October 16, 1847")
+      professor = charlotte_bronte.write("The Professor", "1857")
+      villette = charlotte_bronte.write("Villette", "1853")
+      dpl.add_author(charlotte_bronte)
+
+      dpl.checkout(jane_eyre)
+      dpl.return(jane_eyre)
+
+      expect(dpl.most_popular_book).to eq(jane_eyre)
+
+      dpl.checkout(jane_eyre)
+      dpl.return(jane_eyre)
+      dpl.checkout(professor)
+      dpl.return(professor)
+
+      expect(dpl.most_popular_book).to eq(jane_eyre)
+
+      dpl.checkout(professor)
+      dpl.return(professor)
+      dpl.checkout(professor)
+      dpl.return(professor)
+
+      expect(dpl.most_popular_book).to eq(professor)
+    end
+  end
 end
