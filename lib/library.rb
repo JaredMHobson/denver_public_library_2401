@@ -21,4 +21,14 @@ class Library
   def publication_time_frame(author)
     author.publication_time_frame
   end
+
+  def checkout(book)
+    if @books.include?(book) && !book.checked_out?
+      return book.checkout
+    elsif !@books.include?(book)
+      return false
+    else
+      !book.checked_out?
+    end
+  end
 end
