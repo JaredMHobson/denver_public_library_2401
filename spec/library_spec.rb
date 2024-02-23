@@ -185,4 +185,30 @@ RSpec.describe 'Library' do
       expect(dpl.most_popular_book).to eq(professor)
     end
   end
+
+  describe '#inventory' do
+    it 'returns a hash of authors as keys and an array of their books as their values' do
+      jane_eyre = charlotte_bronte.write("Jane Eyre", "October 16, 1847")
+      professor = charlotte_bronte.write("The Professor", "1857")
+      villette = charlotte_bronte.write("Villette", "1853")
+      
+      dpl.add_author(charlotte_bronte)
+
+      expect(dpl.inventory).to eq(
+        {
+          charlotte_bronte => [jane_eyre, professor, villette]
+        }
+        )
+
+      mockingbird = harper_lee.write("To Kill a Mockingbird", "July 11, 1960")
+      dpl.add_author(harper_lee)
+
+      expect(dpl.inventory).to eq(
+        {
+          charlotte_bronte => [jane_eyre, professor, villette], 
+          harper_lee => [mockingbird]
+        }
+        )
+    end
+  end
 end
