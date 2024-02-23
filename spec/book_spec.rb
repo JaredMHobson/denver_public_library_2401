@@ -23,6 +23,10 @@ RSpec.describe 'Book' do
     it 'is not checked out by default' do
       expect(book.checked_out?).to be false
     end
+
+    it 'has been checked out 0 times by default' do
+      expect(book.times_checked_out).to eq(0)
+    end
   end
 
   describe '#checked_out?' do
