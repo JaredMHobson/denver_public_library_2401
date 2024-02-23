@@ -109,7 +109,7 @@ RSpec.describe 'Library' do
 
     it 'can return false if a book is checked out or does not exist in the library' do
       jane_eyre = charlotte_bronte.write("Jane Eyre", "October 16, 1847")
-      
+
       expect(dpl.checkout(jane_eyre)).to be false
       
       dpl.add_author(charlotte_bronte)
@@ -117,6 +117,30 @@ RSpec.describe 'Library' do
       expect(dpl.checkout(jane_eyre)).to be true
 
       expect(dpl.checkout(jane_eyre)).to be false
+    end
+  end
+
+  describe '#checked_out_books' do
+    it 'can return an array of all checked out books' do
+      jane_eyre = charlotte_bronte.write("Jane Eyre", "October 16, 1847")
+      professor = charlotte_bronte.write("The Professor", "1857")
+      villette = charlotte_bronte.write("Villette", "1853")
+      mockingbird = harper_lee.write("To Kill a Mockingbird", "July 11, 1960")
+      
+      dpl.add_author(charlotte_bronte)
+      dpl.add_author(harper_lee)
+
+      expect(dpl.checked_out_books).to be_empty
+
+      dpl.checkout(jane_eyre)
+      dpl.checkout(professor)
+
+      expect(dpl.checked_out_books).to eq([jane_eyre, professor])
+
+      dpl.checkout(villette)
+      dpl.checkout(mockingbird)
+
+      expect(dpl.checked_out_books).to eq([jane_eyre, professor, villette, mockingbird])
     end
   end
 end
