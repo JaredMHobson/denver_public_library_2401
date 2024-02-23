@@ -59,4 +59,20 @@ RSpec.describe 'Library' do
       expect(dpl.books).to eq([jane_eyre, professor, villette, mockingbird])
     end
   end
+
+  describe '#add_authors_books' do
+    it 'can add books from an author to the books array' do
+      jane_eyre = charlotte_bronte.write("Jane Eyre", "October 16, 1847")
+      professor = charlotte_bronte.write("The Professor", "1857")
+      mockingbird = harper_lee.write("To Kill a Mockingbird", "July 11, 1960")
+      
+      dpl.add_authors_books(charlotte_bronte)
+      
+      expect(dpl.books).to eq([jane_eyre, professor])
+
+      dpl.add_authors_books(harper_lee)
+
+      expect(dpl.books).to eq([jane_eyre, professor, mockingbird])
+    end
+  end
 end
