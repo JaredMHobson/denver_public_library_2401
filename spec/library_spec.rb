@@ -143,4 +143,18 @@ RSpec.describe 'Library' do
       expect(dpl.checked_out_books).to eq([jane_eyre, professor, villette, mockingbird])
     end
   end
+
+  describe '#return' do
+    it 'can checkout a book' do
+      jane_eyre = charlotte_bronte.write("Jane Eyre", "October 16, 1847")
+      dpl.add_author(charlotte_bronte)
+      dpl.checkout(jane_eyre)
+
+      expect(jane_eyre.checked_out?).to be true
+
+      dpl.return(jane_eyre)
+
+      expect(jane_eyre.checked_out?).to be false
+    end
+  end
 end
