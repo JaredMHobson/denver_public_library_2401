@@ -41,4 +41,10 @@ class Library
   def return(book)
     book.return
   end
+
+  def most_popular_book
+    @books.max_by do |book|
+      book.times_checked_out
+    end
+  end
 end
