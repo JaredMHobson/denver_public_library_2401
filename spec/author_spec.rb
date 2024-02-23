@@ -9,5 +9,9 @@ RSpec.describe 'Author' do
     it 'exists' do
       expect(charlotte_bronte).to be_instance_of(Author)
     end
+
+    it 'has a full name' do
+      expect(charlotte_bronte.name).to eq("Charlotte Bronte")
+    end
   end
 end
