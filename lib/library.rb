@@ -47,4 +47,12 @@ class Library
       book.times_checked_out
     end
   end
+
+  def inventory
+    authors_and_books = {}
+    @authors.each do |author|
+      authors_and_books[author] = author.books
+    end
+    authors_and_books
+  end
 end
