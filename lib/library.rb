@@ -31,4 +31,10 @@ class Library
       !book.checked_out?
     end
   end
+
+  def checked_out_books
+    @books.select do |book|
+      book.checked_out?
+    end
+  end
 end
