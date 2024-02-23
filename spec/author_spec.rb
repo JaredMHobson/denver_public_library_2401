@@ -42,5 +42,33 @@ RSpec.describe 'Author' do
 
       expect(charlotte_bronte.publication_time_frame).to eq({start: "1847", end: "1857"})
     end
+
+    it 'can return its earliest book' do
+      villette = charlotte_bronte.write("Villette", "1853")
+
+      expect(charlotte_bronte.earliest_book).to eq(villette)
+
+      professor = charlotte_bronte.write("The Professor", "1857")
+
+      expect(charlotte_bronte.earliest_book).to eq(villette)
+
+      jane_eyre = charlotte_bronte.write("Jane Eyre", "October 16, 1847")
+
+      expect(charlotte_bronte.earliest_book).to eq(jane_eyre)
+    end
+
+    it 'can return its latest book' do
+      villette = charlotte_bronte.write("Villette", "1853")
+
+      expect(charlotte_bronte.latest_book).to eq(villette)
+
+      jane_eyre = charlotte_bronte.write("Jane Eyre", "October 16, 1847")
+
+      expect(charlotte_bronte.latest_book).to eq(villette)
+
+      professor = charlotte_bronte.write("The Professor", "1857")
+
+      expect(charlotte_bronte.latest_book).to eq(professor)
+    end
   end
 end
