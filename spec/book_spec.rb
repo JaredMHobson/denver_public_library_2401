@@ -12,8 +12,12 @@ RSpec.describe 'Book' do
       expect(book.title).to eq("To Kill a Mockingbird")
     end
 
-    it 'has an author' do
+    it 'has an author and can show their full name' do
       expect(book.author).to eq("Harper Lee")
+    end
+
+    it 'has a publication date and can show the year' do
+      expect(book.publication_year).to eq("1960")
     end
   end
 end
