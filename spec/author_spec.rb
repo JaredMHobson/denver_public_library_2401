@@ -30,4 +30,17 @@ RSpec.describe 'Author' do
       expect(charlotte_bronte.books).to eq([jane_eyre, villette])
     end
   end
+
+  describe '#publication_time_frame' do
+    it 'can return a hash showing the year of its earliest book and its latest book' do
+      jane_eyre = charlotte_bronte.write("Jane Eyre", "October 16, 1847")
+      villette = charlotte_bronte.write("Villette", "1853")
+
+      expect(charlotte_bronte.publication_time_frame).to eq({start: "1847", end: "1853"})
+
+      professor = charlotte_bronte.write("The Professor", "1857")
+
+      expect(charlotte_bronte.publication_time_frame).to eq({start: "1847", end: "1857"})
+    end
+  end
 end
